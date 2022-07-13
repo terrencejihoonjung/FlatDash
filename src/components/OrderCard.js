@@ -13,8 +13,11 @@ function OrderCard({ order }) {
         <Heading
             fontSize="1.5rem"
         >
-            {order.status}
+            {order.customer.name}
         </Heading>
+
+      <span></span>
+
     </Box>
   )
 }
