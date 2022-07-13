@@ -1,6 +1,4 @@
-import { Flex, Heading } from "@chakra-ui/react"
-import { useState , useEffect } from "react"
-import { useParams } from "react-router-dom";
+import { Box, Flex, Heading } from "@chakra-ui/react"
 import OrderCard from "./OrderCard"
 
 function DashboardColumn({ title, orders }) {
@@ -10,27 +8,29 @@ function DashboardColumn({ title, orders }) {
     })
 
     return (
-        <Flex
-            flexDirection="column"
-            alignItems="center"
-            border="2px solid black"
-            width="450px"
-            height="1000px"
-            borderRadius = "25px"
-            margin="2rem"
-        >
+        <Box>
             <Heading
-                //   fontFamily= "Varela Round, sans-serif'"
-                fontSize="1.5rem"
-                margin="0.5rem"
-                textAlign="center"
+            //   fontFamily= "Varela Round, sans-serif'"
+            fontSize="2.0rem"
+            margin="0.5rem"
+            textAlign="center"
             >
                 {title}
             </Heading>
-
-            {renderOrders}
-
-        </Flex>
+            <Flex
+            flexDirection="column"
+            alignItems="center"
+            border="2px solid black"
+            width="25vw"
+            height="65vh"
+            borderRadius = "25px"
+            margin="2rem"
+            overflowY="scroll"
+            padding="1rem"
+            >
+                {renderOrders}
+            </Flex>
+        </Box>
     )
 }
 

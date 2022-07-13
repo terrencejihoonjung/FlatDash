@@ -19,6 +19,7 @@ function Dashboard() {
       justifyContent="center" 
       alignContent="center"
       backgroundColor="#fbf7ed"
+      height="100vh"
     >
         <DashboardColumn
           title="Queued Orders"

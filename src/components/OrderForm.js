@@ -12,8 +12,7 @@ function OrderForm() {
   const initialForm= {
     name: "",
     email: "",
-    phone: "",
-    delivery: true
+    phone: ""
   }
 
   const [form, setForm] = useState(initialForm)
@@ -47,7 +46,7 @@ function OrderForm() {
 
   return (
     <Box>
-      <FormControl id="form" margin="2rem 2rem 2rem 2rem">
+      <FormControl id="customerForm" margin="2rem 2rem 2rem 2rem">
         <FormLabel htmlFor="name" marginTop="1rem" >Customer Name:</FormLabel>
         <Input
         id="name"
@@ -71,13 +70,6 @@ function OrderForm() {
         onChange={handleInput}
         value={form.phone}
         placeholder='123-456-7890' />
-        <FormLabel htmlFor="delivery" marginTop="1rem" >Delivery or Pick-up?</FormLabel>
-        <Checkbox
-        id="delivery"
-        onChange={handleInput}
-        value={form.delivery} >
-          Delivery
-        </Checkbox>
       </FormControl>
         <Button marginLeft="4rem" onClick={handleSubmit} >
             Create Order
