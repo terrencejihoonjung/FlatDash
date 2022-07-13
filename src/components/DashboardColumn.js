@@ -1,7 +1,18 @@
 import { Flex, Heading } from "@chakra-ui/react"
+import { useState , useEffect } from "react"
+import { useParams } from "react-router-dom";
 import OrderCard from "./OrderCard"
 
 function DashboardColumn({ title, orders }) {
+
+    const [totalPrice, setTotalPrice] = useState(0)
+    let params = useParams()
+
+    useEffect(() => {
+        fetch(`http://localhost:9292/order/${params.id}`)
+        .then(r => r.json())
+        .then(setTotalPrice)
+    }, [])
 
     const renderOrders = orders.map(order => {
         return <OrderCard key={order.id} order={order} />
