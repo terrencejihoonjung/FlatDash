@@ -17,7 +17,7 @@ function OrderCard({ order }) {
             {order.customer.name}
             {order.delivery}
             {order.created_at}
-            {totalPrice.total}
+            {order.total_price}
         </Heading>
 
       <span></span>

@@ -23,23 +23,37 @@ function OrderForm() {
     setForm(currentForm => ({ ...currentForm, [field]: input }))
   }
 
+  const isError = 0
+
   const handleSubmit = e => {
     e.preventDefault()
 
-    //fetch backendURL, POST
+    const customerObj = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json"},
+      body: JSON.stringify(
+        {name: form.name,
+        email: form.email,
+        phone: form.phone}
+        )
+    }
+    
+    /*fetch(http://localhost:9292/customer, customerObj)*/
 
     setForm(initialForm)
   }
 
   return (
     <Box>
-      <FormControl id="form" margin="2rem">
+      <FormControl id="form" margin="2rem 2rem 2rem 2rem">
         <FormLabel htmlFor="name" marginTop="1rem" >Customer Name:</FormLabel>
         <Input
         id="name"
         onChange={handleInput}
         value={form.name}
-        placeholder="FirstName LastName" />
+        placeholder="Full Name" />
         <FormLabel htmlFor="email" marginTop="1rem" >Email Address:</FormLabel>
         <Input
         id="email"
@@ -47,7 +61,10 @@ function OrderForm() {
         onChange={handleInput}
         value={form.email}
         placeholder="example@contoso.com" />
-        <FormLabel htmlFor="phone" marginTop="1rem" >Phone #:</FormLabel>
+        <FormLabel
+        htmlFor="phone"
+        marginTop="1rem"
+        optionalIndicator >Phone #:</FormLabel>
         <Input
         id="phone"
         type='phone'
@@ -62,8 +79,8 @@ function OrderForm() {
           Delivery
         </Checkbox>
       </FormControl>
-        <Button>
-            Submit
+        <Button marginLeft="4rem" onClick={handleSubmit} >
+            Create Order
         </Button>
     </Box>
   )

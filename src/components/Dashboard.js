@@ -6,15 +6,13 @@ function Dashboard() {
   const [orders, setOrders] = useState([])
 
   useEffect(() => {
-    fetch("http://localhost:9292/order")
+    fetch("http://localhost:9292/orders")
     .then(r => r.json())
-    .then(setOrders)
+    .then(array => {
+      setOrders(array)
+    })
     //calling setOrders without an explicit argument automatically passes the response from r.json().then()
   }, [])
-
-  function filterOrder(status) {
-    return orders.filter(order => order.status === status)
-  }
 
   return (
     <Flex 
@@ -24,15 +22,15 @@ function Dashboard() {
     >
         <DashboardColumn
           title="Queued Orders"
-          orders={filterOrder("Queued")}
+          orders={orders.filter(order => order.status === "Queued")}
         />
         <DashboardColumn
           title="In-Progress"
-          orders={filterOrder("In-Progress")}
+          orders={orders.filter(order => order.status === "In-Progress")}
         />
         <DashboardColumn
           title="Fulfilled Orders"
-          orders={filterOrder("Fulfilled")}
+          orders={orders.filter(order => order.status === "Fulfilled")}
         />
     </Flex>
   )
