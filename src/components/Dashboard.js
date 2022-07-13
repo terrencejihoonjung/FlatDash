@@ -17,7 +17,11 @@ function Dashboard() {
   }
 
   return (
-    <Flex justifyContent="center" alignContent="center">
+    <Flex 
+      justifyContent="center" 
+      alignContent="center"
+      backgroundColor="#fbf7ed"
+    >
         <DashboardColumn
           title="Queued Orders"
           orders={filterOrder("Queued")}
