@@ -31,7 +31,7 @@ function NavBar() {
           Create Order
         </Link>
       </Go>
-      <Go to="/customer/:id" >
+      <Go to="/customer/" >
         <Link 
           margin="1rem"
           fontWeight="bold"
