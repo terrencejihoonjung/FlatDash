@@ -2,9 +2,11 @@ import { FormControl,
         FormLabel,
         Input,
         Button,
-        Box,
+        Flex,
         FormHelperText,
-        FormErrorMessage } from "@chakra-ui/react"
+        FormErrorMessage,
+        Checkbox,
+        Box } from "@chakra-ui/react"
   import { useState } from "react"
 
 function OrderForm() {
@@ -12,7 +14,8 @@ function OrderForm() {
   const initialForm= {
     name: "",
     email: "",
-    phone: ""
+    phone: "",
+    delivery: true
   }
 
   const [form, setForm] = useState(initialForm)
@@ -47,51 +50,72 @@ function OrderForm() {
   const isError = !(regExEmail.test(form.email)||form.email==="")
 
   return (
-    <Box>
-      <FormControl
+      <FormControl display="flex"
       id="customerForm"
       margin="2rem 2rem 2rem 2rem"
       isInvalid={isError}
+      justifyContent="start"
        >
-        <FormLabel htmlFor="name" marginTop="1rem" >Customer Name:</FormLabel>
-        <Input
-        id="name"
-        onChange={handleInput}
-        value={form.name}
-        placeholder="Full Name"
-        width="auto" />
-        <FormLabel htmlFor="email" marginTop="1rem" >Email Address:</FormLabel>
-        <Input
-        id="email"
-        type="email"
-        onChange={handleInput}
-        value={form.email}
-        placeholder="example@contoso.com"
-        width="auto" />
-        {!isError ?
-          (<FormHelperText>
-            Email is required
-          </FormHelperText>) :
-          (<FormErrorMessage>
-            Please enter a valid address  
-          </FormErrorMessage>)}
-        <FormLabel
-        htmlFor="phone"
-        marginTop="1rem"
-        optionalIndicator >
-          Phone #:</FormLabel>
-        <Input
-        id="phone"
-        type='phone'
-        onChange={handleInput}
-        value={form.phone}
-        placeholder='123-456-7890'
-        width="auto" />
-      </FormControl>
-        <Button marginLeft="4rem" onClick={handleSubmit} >
+        <Box
+        marginRight="2rem">
+          <FormLabel htmlFor="name" >Customer Name:</FormLabel>
+          <Input
+          id="name"
+          onChange={handleInput}
+          value={form.name}
+          placeholder="Full Name" />
+        </Box>
+        <Box
+        marginRight="2rem">
+          <FormLabel htmlFor="email" >Email Address:</FormLabel>
+          <Input
+          id="email"
+          type="email"
+          onChange={handleInput}
+          value={form.email}
+          placeholder="example@contoso.com" />
+          {!isError ?
+            (<FormHelperText>
+              Email is required
+            </FormHelperText>) :
+            (<FormErrorMessage>
+              Please enter a valid address  
+            </FormErrorMessage>)}
+        </Box>
+        <Box
+        marginRight="2rem">
+          <FormLabel
+          htmlFor="phone"
+          optionalIndicator >
+            Phone #:</FormLabel>
+          <Input
+          id="phone"
+          type='phone'
+          onChange={handleInput}
+          value={form.phone}
+          placeholder='123-456-7890' />
+        </Box>
+        <Box
+        marginRight="2rem">
+          <FormLabel
+            htmlFor="delivery" 
+              >Delivery or Pick-up?</FormLabel>
+            <Checkbox
+            marginTop="0.5rem"
+            id="delivery"
+            onChange={handleInput}
+            value={form.delivery}
+            defaultChecked >
+                Delivery
+            </Checkbox>
+        </Box>
+        <Button 
+        marginTop="1.82rem" 
+        onClick={handleSubmit} 
+        width="12rem">
             Create Order
         </Button>
-    </Box>
+      </FormControl>
   )
 }
 

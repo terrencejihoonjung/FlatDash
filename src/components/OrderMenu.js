@@ -1,30 +1,36 @@
-import { FormControl, FormLabel, Checkbox } from "@chakra-ui/react"
+import { Box, Flex, FormControl, FormLabel } from "@chakra-ui/react"
 import { useState, useEffect } from "react"
+import MenuCard from "./MenuCard"
 
-function OrderMenu() {
+function OrderMenu({ clickHandler }) {
 
-    const [delivery, setDelivery] = useState(true)
-    const [dishes, setDishes] = useState([])
+    const [menuItems, setMenuItems] = useState([])
 
-    // use effect to load all menu items once
-    
-    const handleCheck = () => {
-        setDelivery(currentDelivery => !currentDelivery)
-    }
+    useEffect( ()=> {
+        fetch(`http://localhost:9292/menu_items`)
+        .then(response => response.json())
+        .then(setMenuItems)
+    }, [])
+
+    const renderMenuItems = menuItems.map(item => {
+        return <MenuCard key={item.id} item={item} clickHandler={clickHandler} />
+    })
 
     return (
-        <FormControl id="orderDishesForm" >
-            <FormLabel
-            htmlFor="delivery"
-            marginTop="1rem" 
-            >Delivery or Pick-up?</FormLabel>
-            <Checkbox
-            id="delivery"
-            onChange={handleCheck}
-            value={delivery}
-            defaultChecked >
-                Delivery</Checkbox>
-        </FormControl>
+        <Flex
+        // flexDirection="column"
+        alignItems="center"
+        border="2px solid black"
+        marginTop="2rem"
+        width="45vw"
+        height="65vh"
+        borderRadius = "10px"
+        padding="1rem"
+        flexWrap="wrap"
+        overflowY="scroll"
+        >
+            {renderMenuItems}
+        </Flex>
     )
 }
 
