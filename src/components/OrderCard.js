@@ -6,38 +6,37 @@ function OrderCard({ order }) {
     <Box
     border="1px solid black"
     borderWidth="2px"
-    width="auto"
+    width="95%"
     height="auto"
     borderRadius="md"
     cursor="grab"
     padding="1rem"
     marginTop="1rem"
+    justifyContent="center"
     >
-      <Heading size="md">
+      <Heading size="md" >
         Order #{order.id} for {order.customer.name}
       </Heading>
-      <Heading size="md">
+      <Heading size="md" >
         Total Price: ${order.total_price}
       </Heading>
       <Text size="sm">
         {order.created_at},
         {order.delivery},
       </Text>
-
-      <Flex
-      >
+      <Flex>
         <Button 
-        fontSize="sm"
+        fontSize="1vh"
         marginRight= "2rem"
-        marginTop="1rem"
+        marginTop="1vh"
         >
-          View order details
+          View order
         </Button>
         <Button 
         fontSize="sm"
-        marginTop="1rem"
+        marginTop="1vh"
       >
-          Delete this order
+          Delete order
         </Button>
       </Flex>
     </Box>

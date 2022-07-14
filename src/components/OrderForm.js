@@ -1,7 +1,5 @@
-import { Flex,
-    FormControl,
+import { FormControl,
     FormLabel,
-    Checkbox,
     Input,
     Button,
     Box } from "@chakra-ui/react"
@@ -22,7 +20,7 @@ function OrderForm() {
     setForm(currentForm => ({ ...currentForm, [field]: input }))
   }
 
-  const isError = 0
+  // const isError check if field is complete
 
   const handleSubmit = e => {
     e.preventDefault()
@@ -46,7 +44,10 @@ function OrderForm() {
 
   return (
     <Box>
-      <FormControl id="customerForm" margin="2rem 2rem 2rem 2rem">
+      <FormControl
+      id="customerForm"
+      margin="2rem 2rem 2rem 2rem"
+      isRequired >
         <FormLabel htmlFor="name" marginTop="1rem" >Customer Name:</FormLabel>
         <Input
         id="name"

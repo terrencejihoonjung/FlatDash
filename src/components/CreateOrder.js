@@ -1,11 +1,13 @@
 import { Grid } from "@chakra-ui/react"
 import OrderForm from "./OrderForm"
+import OrderMenu from "./OrderMenu"
 
 function CreateOrder() {
   return(
     <Grid>
-      
-    <OrderForm />
+      <OrderForm />
+      <OrderMenu />
+    </Grid>
   )
 }
 
