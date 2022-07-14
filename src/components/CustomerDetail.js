@@ -14,8 +14,6 @@ function CustomerDetail({ onDeleteOrder }) {
     fetch(`http://localhost:9292/customers/${params.id}`)
     .then(response => response.json())
     .then(object => {
-      console.log(object.orders)
-      console.log(object)
       setCustomer(object)
       setAllOrderOfCustomer(object.orders)
     })
