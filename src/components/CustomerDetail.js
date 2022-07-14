@@ -2,14 +2,16 @@ import { Box, Flex } from "@chakra-ui/react";
 import React , { useEffect , useState } from "react";
 import OrderCard from "./OrderCard"
 import DashboardColumn from "./DashboardColumn"
+import { useParams } from "react-router-dom";
 
 function CustomerDetail({ id , onDeleteOrder }) {
   
   const [ customer , setCustomer ] = useState({})
   const [ allOrderOfCustomer , setAllOrderOfCustomer ] = useState([])
-  
+  let params = useParams()
+
   useEffect( ()=> {
-    fetch(`http://localhost:9292/customers/${id}`)
+    fetch(`http://localhost:9292/customers/${params.id}`)
     .then(response => response.json())
     .then(object => {
       setCustomer(object)

@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 
 function OrderCard({ order , onDeleteOrder }) {
 
+  // add drag and drop onto dashboard columns
+
   let navigate = useNavigate(); 
   function handleView() {
     let path = `/order/${order.id}`; 

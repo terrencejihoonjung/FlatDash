@@ -16,7 +16,7 @@ function OrderDetail() {
       setCustomer(object.customer)
       setDishes(object.dishes)
     })
-  } , [ params.id ])
+  } , [])
 
   return (
     <>
@@ -26,8 +26,6 @@ function OrderDetail() {
       <div>Created: {order.created_at}</div>
       <div>Updated: {order.updated_at}</div>
       <div>Total price: {order.total_price}</div>
-
-       
 
       <div>Customer id: {customer.id}</div>
       <div>Customer name: {customer.name}</div>

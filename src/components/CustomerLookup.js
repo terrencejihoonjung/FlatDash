@@ -8,7 +8,7 @@ import { FormControl,
         FormErrorMessage,
         FormHelperText } from "@chakra-ui/react"
 
-function CustomerLookup({ setLoginId }) {
+function CustomerLookup() {
 
     const [emailInput, setEmailInput] = useState("")
     const navigate = useNavigate()
@@ -22,7 +22,7 @@ function CustomerLookup({ setLoginId }) {
         fetch(`http://localhost:9292/customer_lookup/${emailInput}`)
         .then(r => r.json())
         .then(id => {
-            setLoginId(id)
+            // setLookupId(id)
             navigate(`/customer/${id}`)
         })
     }

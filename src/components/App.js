@@ -9,7 +9,7 @@ import { useState } from "react"
 
 function App() {
 
-  const [loginId, setLoginId] = useState("")
+  // const [lookupId, setLookupId] = useState("")
 
   return (
     <div>
@@ -17,8 +17,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Dashboard />} />
         <Route path="/create" element={<CreateOrder />} />
-        <Route path="/customer" element={<CustomerLookup setLoginId={setLoginId} />} />
-        <Route path="/customer/:id" element={<CustomerDetail id={loginId} />} />
+        <Route path="/customer" element={<CustomerLookup />} />
+        <Route path="/customer/:id" element={<CustomerDetail />} />
         <Route path="/order/:id" element={<OrderDetail />} />
       </Routes>
     </div>
