@@ -1,6 +1,14 @@
 import { Box, Heading, Text, Button, ButtonGroup, Flex } from "@chakra-ui/react"
 
-function OrderCard({ order }) {
+function OrderCard({ order , onDeleteOrder }) {
+
+  function handleDelete() {
+    fetch(`http://localhost:9292/order/${order.id}`, {
+      method: "DELETE",
+    })
+      .then((r) => r.json())
+      .then((deletedOrder) => onDeleteOrder(deletedOrder));
+  }
 
   return (
     <Box
@@ -35,6 +43,7 @@ function OrderCard({ order }) {
         <Button 
         fontSize="sm"
         marginTop="1vh"
+        onClick={()=> handleDelete()}
       >
           Delete order
         </Button>

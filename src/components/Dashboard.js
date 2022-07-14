@@ -14,6 +14,10 @@ function Dashboard() {
     //calling setOrders without an explicit argument automatically passes the response from r.json().then()
   }, [])
 
+  function onDeleteOrder(deletedOrder) {
+    setOrders(orders.filter( order => order.id !== deletedOrder.id))
+  }
+
   return (
     <Flex 
       justifyContent="center" 
@@ -23,15 +27,15 @@ function Dashboard() {
     >
         <DashboardColumn
           title="Queued Orders"
-          orders={orders.filter(order => order.status === "Queued")}
+          orders={orders.filter(order => order.status === "Queued")} onDeleteOrder={onDeleteOrder}
         />
         <DashboardColumn
           title="In-Progress"
-          orders={orders.filter(order => order.status === "In-Progress")}
+          orders={orders.filter(order => order.status === "In-Progress")} onDeleteOrder={onDeleteOrder}
         />
         <DashboardColumn
           title="Fulfilled Orders"
-          orders={orders.filter(order => order.status === "Fulfilled")}
+          orders={orders.filter(order => order.status === "Fulfilled")} onDeleteOrder={onDeleteOrder}
         />
     </Flex>
   )

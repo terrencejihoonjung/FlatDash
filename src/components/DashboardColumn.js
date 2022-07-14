@@ -1,10 +1,10 @@
 import { Box, Flex, Heading } from "@chakra-ui/react"
 import OrderCard from "./OrderCard"
 
-function DashboardColumn({ title, orders }) {
+function DashboardColumn({ title, orders , onDeleteOrder }) {
 
     const renderOrders = orders.map(order => {
-        return <OrderCard key={order.id} order={order} />
+        return <OrderCard key={order.id} order={order} onDeleteOrder={onDeleteOrder} />
     })
 
     return (
