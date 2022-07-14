@@ -2,9 +2,13 @@ import { Box, Heading, Item, Text, GridItem } from "@chakra-ui/react"
 
 function MenuCard({ item, clickHandler }) {
 
+  function handleClick() {
+    clickHandler(item)
+  }
+
   return (
     <Box 
-    onClick={clickHandler}
+    onClick={handleClick}
     border="1px solid black"
     borderWidth="2px"
     width="30%"

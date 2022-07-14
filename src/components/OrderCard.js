@@ -1,22 +1,44 @@
 import { Box, Heading, Text, Button, Flex } from "@chakra-ui/react"
 import { useNavigate } from "react-router-dom";
 
-function OrderCard({ order , onDeleteOrder }) {
-
-  // add drag and drop onto dashboard columns
+function OrderCard({ order, fetchOrders }) {
 
   let navigate = useNavigate(); 
-  function handleView() {
+  function handleView(e) {
+    e.stopPropagation()
     let path = `/order/${order.id}`; 
     navigate(path);
   }
 
-  function handleDelete() {
+  function handleDelete(e) {
+    e.stopPropagation()
     fetch(`http://localhost:9292/orders/${order.id}`, {
       method: "DELETE",
     })
       .then((r) => r.json())
-      .then((deletedOrder) => onDeleteOrder(deletedOrder));
+      .then(fetchOrders());
+  }
+
+  function handleMove() {
+    let status
+    if (order.status==="Queued") {
+      status = "In-Progress"
+    } else {
+      status = "Fulfilled"
+    }
+
+    fetch(`http://localhost:9292/orders/${order.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify({
+        status: status,
+      }),
+    })
+      .then((r) => r.json())
+      .then(fetchOrders());
   }
 
   return (
@@ -30,6 +52,7 @@ function OrderCard({ order , onDeleteOrder }) {
     padding="1rem"
     marginTop="1rem"
     justifyContent="center"
+    onClick={handleMove}
     >
       <Heading size="md" >
         Order #{order.id} for {order.customer.name}
@@ -44,19 +67,25 @@ function OrderCard({ order , onDeleteOrder }) {
       <Flex>
         <Button 
         fontSize="1vh"
-        marginRight= "2rem"
+        marginRight= "1rem"
         marginTop="1vh"
-        onClick={() => handleView()}
-        >
+        onClick={handleView} >
           View order
         </Button>
         <Button 
-        fontSize="sm"
+        fontSize="1vh"
         marginTop="1vh"
-        onClick={() => handleDelete()}
-      >
+        marginRight= "1rem"
+        onClick={handleDelete} >
           Delete order
         </Button>
+        {/* {movable ? <Button
+        fontSize="1vh"
+        marginRight= "1rem"
+        marginTop="1vh"
+        onClick={() => handleMove() }>
+          Move to next stage
+        </Button> : <></>} */}
       </Flex>
     </Box>
   )

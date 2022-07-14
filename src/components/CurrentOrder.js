@@ -1,17 +1,11 @@
 import { Box, Flex, FormControl, FormLabel } from "@chakra-ui/react"
 import { useState, useEffect } from "react"
-import MenuCard from "./MenuCard"
+import CurrentOrderCard from "./CurrentOrderCard"
 
-function OrderMenu({ clickHandler, menuItems, setMenuItems }) {
+function CurrentOrder({ clickHandler, currentOrders, setCurrentOrders }) {
 
-    useEffect(()=> {
-        fetch(`http://localhost:9292/menu_items`)
-        .then(response => response.json())
-        .then(setMenuItems)
-    }, [])
-
-    const renderMenuItems = menuItems.map(item => {
-        return <MenuCard key={item.id} item={item} clickHandler={clickHandler} />
+    const renderCurrentOrderCards = currentOrders.map(item => {
+        return <CurrentOrderCard key={item.id} item={item} clickHandler={clickHandler} />
     })
 
     return (
@@ -27,10 +21,10 @@ function OrderMenu({ clickHandler, menuItems, setMenuItems }) {
         flexWrap="wrap"
         overflowY="scroll"
         >
-            {renderMenuItems}
+            {renderCurrentOrderCards}
         </Flex>
     )
 }
 
 
-export default OrderMenu
+export default CurrentOrder

@@ -1,18 +1,22 @@
 import { Grid, GridItem, Heading } from "@chakra-ui/react"
 import OrderForm from "./OrderForm"
 import OrderMenu from "./OrderMenu"
+import CurrentOrder from "./CurrentOrder"
 import { useState } from "react"
 
 function CreateOrder() {
 
-const [order, setOrder] = useState([])
+const [currentOrders, setCurrentOrders] = useState([])
+const [menuItems, setMenuItems] = useState([])
 
-const onClickAdd = () => {
-
+const onClickAdd = (addedOrder) => {
+  setCurrentOrders(currentOrders => [...currentOrders, addedOrder])
 }
+
 const onClickDelete = () => {
 
 }
+
   return(
     <Grid
     templateAreas={
@@ -28,12 +32,12 @@ const onClickDelete = () => {
       
       <GridItem area={"menu"}>
         <Heading>Select Menu Items</Heading>
-        <OrderMenu clickHandler={onClickAdd}/>
+        <OrderMenu clickHandler={onClickAdd} setMenuItems={setMenuItems} menuItems={menuItems}/>
       </GridItem>
       
       <GridItem area={"order"}>
         <Heading>Current Order</Heading>
-        <OrderMenu clickHandler={onClickDelete}/>
+        <CurrentOrder clickHandler={onClickDelete} currentOrders={currentOrders} setCurrentOrders={setCurrentOrders} />
       </GridItem>
  
     </Grid>

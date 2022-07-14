@@ -2,18 +2,13 @@ import { Flex } from "@chakra-ui/react"
 import DashboardColumn from "./DashboardColumn"
 import { useState , useEffect } from "react"
 
-function Dashboard( { onDeleteOrder , orders , setOrders} ) {
+function Dashboard( { fetchOrders , orders } ) {
   
+  // add click or drag to change order.status to next status
 
   useEffect(() => {
-    fetch("http://localhost:9292/orders")
-    .then(r => r.json())
-    .then(array => {
-      setOrders(array)
-    })  
+    fetchOrders()
   }, [])
-
-  
 
   return (
     <Flex 
@@ -25,15 +20,15 @@ function Dashboard( { onDeleteOrder , orders , setOrders} ) {
         <DashboardColumn
           title="Queued Orders"
           orders={orders.filter(order => order.status === "Queued")}
-          onDeleteOrder={onDeleteOrder} />
+          fetchOrders={fetchOrders} />
         <DashboardColumn
           title="In-Progress"
           orders={orders.filter(order => order.status === "In-Progress")} 
-          onDeleteOrder={onDeleteOrder} />
+          fetchOrders={fetchOrders} />
         <DashboardColumn
           title="Fulfilled Orders"
           orders={orders.filter(order => order.status === "Fulfilled")} 
-          onDeleteOrder={onDeleteOrder} />
+          fetchOrders={fetchOrders} />
     </Flex>
   )
 }

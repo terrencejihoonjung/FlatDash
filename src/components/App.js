@@ -11,18 +11,22 @@ function App() {
 
   const [orders, setOrders] = useState([])
 
-  function onDeleteOrder(deletedOrder) {
-    setOrders(orders.filter( order => order.id !== deletedOrder.id))
+  function fetchOrders() {
+    fetch("http://localhost:9292/orders")
+    .then(r => r.json())
+    .then(array => {
+      setOrders(array)
+    })  
   }
 
   return (
     <div>
       <NavBar />
       <Routes>
-        <Route path="/" element={<Dashboard onDeleteOrder={onDeleteOrder} orders={orders} setOrders={setOrders} />} />
+        <Route path="/" element={<Dashboard fetchOrders={fetchOrders} orders={orders} />} />
         <Route path="/create" element={<CreateOrder />} />
         <Route path="/customer" element={<CustomerLookup />} />
-        <Route path="/customer/:id" element={<CustomerDetail onDeleteOrder={onDeleteOrder} />} />
+        <Route path="/customer/:id" element={<CustomerDetail fetchOrders={fetchOrders} />} />
         <Route path="/order/:id" element={<OrderDetail />} />
       </Routes>
     </div>

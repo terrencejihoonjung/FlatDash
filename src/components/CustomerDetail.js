@@ -4,7 +4,7 @@ import OrderCard from "./OrderCard"
 import DashboardColumn from "./DashboardColumn"
 import { useParams } from "react-router-dom";
 
-function CustomerDetail({ onDeleteOrder }) {
+function CustomerDetail({ onDeleteOrder , onMoveOrder }) {
   
   const [ customer , setCustomer ] = useState({})
   const [ allOrderOfCustomer , setAllOrderOfCustomer ] = useState([])
@@ -38,7 +38,9 @@ function CustomerDetail({ onDeleteOrder }) {
       <DashboardColumn
           title="All Orders Of This Customer"
           orders={allOrderOfCustomer} 
-          onDeleteOrder={onDeleteOrderInCustomerDetail} />
+          onDeleteOrder={onDeleteOrderInCustomerDetail}
+          onMoveOrder={onMoveOrder}
+          movable={false} />
     </Box>
   )
 }
