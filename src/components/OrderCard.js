@@ -1,6 +1,13 @@
 import { Box, Heading, Text, Button, ButtonGroup, Flex } from "@chakra-ui/react"
+import { useNavigate } from "react-router-dom";
 
 function OrderCard({ order , onDeleteOrder }) {
+
+  let navigate = useNavigate(); 
+  function handleView() {
+    let path = `/order/${order.id}`; 
+    navigate(path);
+  }
 
   function handleDelete() {
     fetch(`http://localhost:9292/order/${order.id}`, {
@@ -37,13 +44,14 @@ function OrderCard({ order , onDeleteOrder }) {
         fontSize="1vh"
         marginRight= "2rem"
         marginTop="1vh"
+        onClick={() => handleView()}
         >
           View order
         </Button>
         <Button 
         fontSize="sm"
         marginTop="1vh"
-        onClick={()=> handleDelete()}
+        onClick={() => handleDelete()}
       >
           Delete order
         </Button>

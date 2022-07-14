@@ -23,12 +23,12 @@ function DashboardColumn({ title, orders , onDeleteOrder }) {
             border="2px solid black"
             width="25vw"
             height="65vh"
-            borderRadius = "25px"
+            borderRadius = "10px"
             margin="2rem"
-            overflowY="scroll"
+            overflowY="auto"
             padding="1rem"
             >
-                {renderOrders}
+                {renderOrders} 
             </Flex>
         </Box>
     )
