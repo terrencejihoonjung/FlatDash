@@ -9,7 +9,7 @@ function OrderDetail() {
   let params = useParams()
   
   useEffect( ()=> {
-    fetch(`http://localhost:9292/order/${params.id}`)
+    fetch(`http://localhost:9292/orders/${params.id}`)
     .then(response => response.json())
     .then(object => {
       setOrder(object)

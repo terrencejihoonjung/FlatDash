@@ -9,7 +9,7 @@ function CustomerDetail({ id , onDeleteOrder }) {
   const [ allOrderOfCustomer , setAllOrderOfCustomer ] = useState([])
   
   useEffect( ()=> {
-    fetch(`http://localhost:9292/customer/${id}`)
+    fetch(`http://localhost:9292/customers/${id}`)
     .then(response => response.json())
     .then(object => {
       setCustomer(object)

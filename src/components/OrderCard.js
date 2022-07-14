@@ -10,7 +10,7 @@ function OrderCard({ order , onDeleteOrder }) {
   }
 
   function handleDelete() {
-    fetch(`http://localhost:9292/order/${order.id}`, {
+    fetch(`http://localhost:9292/orders/${order.id}`, {
       method: "DELETE",
     })
       .then((r) => r.json())

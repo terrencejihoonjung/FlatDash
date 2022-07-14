@@ -38,7 +38,7 @@ function OrderForm() {
         )
     }
     
-    /*fetch(http://localhost:9292/customer, customerPOSTObj)*/
+    /*fetch(http://localhost:9292/customers, customerPOSTObj)*/
 
     setForm(initialForm)
   }
