@@ -1,8 +1,10 @@
 import { FormControl,
-    FormLabel,
-    Input,
-    Button,
-    Box } from "@chakra-ui/react"
+        FormLabel,
+        Input,
+        Button,
+        Box,
+        FormHelperText,
+        FormErrorMessage } from "@chakra-ui/react"
   import { useState } from "react"
 
 function OrderForm() {
@@ -16,11 +18,10 @@ function OrderForm() {
   const [form, setForm] = useState(initialForm)
 
   const handleInput = e => {
-    const { field, input } = e.target
-    setForm(currentForm => ({ ...currentForm, [field]: input }))
+    const { id, value } = e.target
+    setForm(currentForm => ({ ...currentForm, [id]: value }))
+    //parentheses needed around curlies to escape explicit return expected
   }
-
-  // const isError check if field is complete
 
   const handleSubmit = e => {
     e.preventDefault()
@@ -37,40 +38,55 @@ function OrderForm() {
         )
     }
     
-    /*fetch(http://localhost:9292/customer, customerObj)*/
+    /*fetch(http://localhost:9292/customer, customerPOSTObj)*/
 
     setForm(initialForm)
   }
+
+  const regExEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+  const isError = !(regExEmail.test(form.email)||form.email==="")
 
   return (
     <Box>
       <FormControl
       id="customerForm"
       margin="2rem 2rem 2rem 2rem"
-      isRequired >
+      isInvalid={isError}
+       >
         <FormLabel htmlFor="name" marginTop="1rem" >Customer Name:</FormLabel>
         <Input
         id="name"
         onChange={handleInput}
         value={form.name}
-        placeholder="Full Name" />
+        placeholder="Full Name"
+        width="auto" />
         <FormLabel htmlFor="email" marginTop="1rem" >Email Address:</FormLabel>
         <Input
         id="email"
         type="email"
         onChange={handleInput}
         value={form.email}
-        placeholder="example@contoso.com" />
+        placeholder="example@contoso.com"
+        width="auto" />
+        {!isError ?
+          (<FormHelperText>
+            Email is required
+          </FormHelperText>) :
+          (<FormErrorMessage>
+            Please enter a valid address  
+          </FormErrorMessage>)}
         <FormLabel
         htmlFor="phone"
         marginTop="1rem"
-        optionalIndicator >Phone #:</FormLabel>
+        optionalIndicator >
+          Phone #:</FormLabel>
         <Input
         id="phone"
         type='phone'
         onChange={handleInput}
         value={form.phone}
-        placeholder='123-456-7890' />
+        placeholder='123-456-7890'
+        width="auto" />
       </FormControl>
         <Button marginLeft="4rem" onClick={handleSubmit} >
             Create Order

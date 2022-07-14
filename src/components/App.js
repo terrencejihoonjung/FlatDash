@@ -4,7 +4,7 @@ import CustomerDetail from "./CustomerDetail"
 import NavBar from "./NavBar"
 import Dashboard from "./Dashboard"
 import OrderDetail from "./OrderDetail"
-import CustomerLogin from "./CustomerLogin"
+import CustomerLookup from "./CustomerLookup"
 import { useState } from "react"
 
 function App() {
@@ -17,7 +17,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Dashboard />} />
         <Route path="/create" element={<CreateOrder />} />
-        <Route path="/customer" element={<CustomerLogin setLoginId={setLoginId} />} />
+        <Route path="/customer" element={<CustomerLookup setLoginId={setLoginId} />} />
         <Route path="/customer/:id" element={<CustomerDetail id={loginId} />} />
         <Route path="/order/:id" element={<OrderDetail />} />
       </Routes>

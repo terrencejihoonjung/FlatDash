@@ -14,8 +14,8 @@ function CustomerDetail({ id , onDeleteOrder }) {
     .then(object => {
       setCustomer(object)
       setAllOrderOfCustomer(object.orders)
-      console.log(object)
-      console.log(object.orders)
+      // console.log(object)
+      // console.log(object.orders)
     })
     } , [])
 
@@ -24,7 +24,7 @@ function CustomerDetail({ id , onDeleteOrder }) {
       {customer["email_address"]}
 
       <ul>{allOrderOfCustomer.map(order => {
-         return <li>{order.id}</li> 
+         return <li key={order.id}>{order.id}</li> 
       })}</ul>
     </Box>
   )
