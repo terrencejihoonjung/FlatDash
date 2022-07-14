@@ -2,8 +2,8 @@ import { Flex } from "@chakra-ui/react"
 import DashboardColumn from "./DashboardColumn"
 import { useState , useEffect } from "react"
 
-function Dashboard() {
-  const [orders, setOrders] = useState([])
+function Dashboard( { onDeleteOrder , orders , setOrders} ) {
+  
 
   useEffect(() => {
     fetch("http://localhost:9292/orders")
@@ -13,9 +13,7 @@ function Dashboard() {
     })  
   }, [])
 
-  function onDeleteOrder(deletedOrder) {
-    setOrders(orders.filter( order => order.id !== deletedOrder.id))
-  }
+  
 
   return (
     <Flex 

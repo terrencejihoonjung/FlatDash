@@ -4,7 +4,7 @@ import OrderCard from "./OrderCard"
 import DashboardColumn from "./DashboardColumn"
 import { useParams } from "react-router-dom";
 
-function CustomerDetail({ id , onDeleteOrder }) {
+function CustomerDetail({ onDeleteOrder }) {
   
   const [ customer , setCustomer ] = useState({})
   const [ allOrderOfCustomer , setAllOrderOfCustomer ] = useState([])
@@ -14,20 +14,22 @@ function CustomerDetail({ id , onDeleteOrder }) {
     fetch(`http://localhost:9292/customers/${params.id}`)
     .then(response => response.json())
     .then(object => {
+      console.log(object.orders)
       setCustomer(object)
       setAllOrderOfCustomer(object.orders)
-      // console.log(object)
-      // console.log(object.orders)
     })
     } , [])
 
   return (
     <Box>
+      <h1>{customer.name}'s Profile</h1>
+
       {customer["email_address"]}
 
-      <ul>{allOrderOfCustomer.map(order => {
-         return <li key={order.id}>{order.id}</li> 
-      })}</ul>
+      <DashboardColumn
+          title="All Orders Of This Customer"
+          orders={allOrderOfCustomer} 
+          onDeleteOrder={onDeleteOrder} />
     </Box>
   )
 }
