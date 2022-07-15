@@ -9,28 +9,19 @@ function CreateOrder() {
   const [dishesToAdd, setDishesToAdd] = useState([])
   const [menuItems, setMenuItems] = useState([])
   const [qtys, setQtys] = useState({})
-  // const qtys={}
 
   //click for MenuCard
   const onClickAdd = (addedItem) => {
-    console.log("clicked menu item!")
     const id = addedItem.id
     let temp = {...qtys}
 
     if (!dishesToAdd.includes(addedItem)) {
-      console.log("dishes:" + dishesToAdd)
       setDishesToAdd(dishesToAdd => [...dishesToAdd, addedItem])
       temp[id] = 1
-      console.log("tempd[id]: " + temp[id])
       setQtys(temp)
-    }
-
-    else {
-      console.log("tempd[id]: " + temp[id])
+    } else {
       temp[id] += 1
-      setQtys(temp[id])
-      console.log("temp: " + temp)
-      console.log("tempd[id]: " + temp[id])
+      setQtys(temp)
     }
   }
 
@@ -84,7 +75,7 @@ function CreateOrder() {
       
       <GridItem area={"order"}>
         <Heading>Current Order</Heading>
-        <CurrentOrder clickHandler={onClickDelete} dishesToAdd={dishesToAdd} setDishesToAdd={setDishesToAdd} />
+        <CurrentOrder qtys={qtys} clickHandler={onClickDelete} dishesToAdd={dishesToAdd} setDishesToAdd={setDishesToAdd} />
       </GridItem>
  
     </Grid>

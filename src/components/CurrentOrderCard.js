@@ -1,7 +1,7 @@
 import { Box, Heading, Text } from "@chakra-ui/react"
 import { useState } from "react"
 
-function CurrentOrderCard({ item, clickHandler }) {
+function CurrentOrderCard({ item, clickHandler , quantity }) {
 
     return (
         <Box 
@@ -18,7 +18,7 @@ function CurrentOrderCard({ item, clickHandler }) {
             {item.item_name}
         </Heading>
         <Heading size="md" >
-            Quantity: 
+            Quantity: {quantity}
         </Heading>
         </Box>
     )
