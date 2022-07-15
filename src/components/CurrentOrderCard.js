@@ -3,9 +3,13 @@ import { useState } from "react"
 
 function CurrentOrderCard({ item, clickHandler , quantity }) {
 
+    function handleDelete() {
+        clickHandler(item)
+    }
+
     return (
         <Box 
-        onClick={clickHandler}
+        onClick={handleDelete}
         border="1px solid black"
         borderWidth="2px"
         width="30%"

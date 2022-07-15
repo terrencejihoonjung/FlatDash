@@ -15,13 +15,20 @@ function CreateOrder() {
     const id = addedItem.id
     let temp = {...qtys}
 
-    if (!dishesToAdd.includes(addedItem)) {
-      setDishesToAdd(dishesToAdd => [...dishesToAdd, addedItem])
-      temp[id] = 1
-      setQtys(temp)
-    } else {
-      temp[id] += 1
-      setQtys(temp)
+    if (menuItems.filter( item => item.id === addedItem.id)[0].inventory > 0) {
+      if (!dishesToAdd.includes(addedItem)) {
+        setDishesToAdd(dishesToAdd => [...dishesToAdd, addedItem])
+        temp[id] = 1
+        setQtys(temp)
+      } else {
+        temp[id] += 1
+        setQtys(temp)
+      }
+      menuItems.forEach(item => {
+        if (item.id === addedItem.id) {
+          item.inventory -= 1
+        }
+      })
     }
   }
 
@@ -42,8 +49,8 @@ function CreateOrder() {
     }
     
     fetch("http://localhost:9292/order", customerObj)
-    // .then(r => r.json())
-    // .then(data => console.log(data))
+    .then(r => r.json())
+    .then(data => console.log(data))
 
     //reset dishesToAdd and quantities
     setDishesToAdd([])
@@ -51,8 +58,8 @@ function CreateOrder() {
   }
 
   //click for CurrentOrderCard
-  const onClickDelete = () => {
-
+  const onClickDelete = (item) => {
+    setDishesToAdd(dishesToAdd => dishesToAdd.filter(dish => dish.id !== item.id))
   }
 
   return(
