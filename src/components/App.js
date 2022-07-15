@@ -5,7 +5,7 @@ import NavBar from "./NavBar"
 import Dashboard from "./Dashboard"
 import OrderDetail from "./OrderDetail"
 import CustomerLookup from "./CustomerLookup"
-import { useState } from "react"
+import React, { useState } from "react"
 
 function App() {
 
@@ -14,9 +14,7 @@ function App() {
   function fetchOrders() {
     fetch("http://localhost:9292/orders")
     .then(r => r.json())
-    .then(array => {
-      setOrders(array)
-    })  
+    .then(setOrders)  
   }
 
   return (

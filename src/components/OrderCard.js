@@ -1,7 +1,7 @@
 import { Box, Heading, Text, Button, Flex } from "@chakra-ui/react"
 import { useNavigate } from "react-router-dom";
 
-function OrderCard({ order, fetchOrders }) {
+function OrderCard({ order, fetchOrders , deletable }) {
 
   let navigate = useNavigate(); 
   function handleView(e) {
@@ -15,8 +15,8 @@ function OrderCard({ order, fetchOrders }) {
     fetch(`http://localhost:9292/orders/${order.id}`, {
       method: "DELETE",
     })
-      .then((r) => r.json())
-      .then(fetchOrders());
+    .then(r => r.json())
+    .then(fetchOrders())
   }
 
   function handleMove() {
@@ -34,8 +34,8 @@ function OrderCard({ order, fetchOrders }) {
         "Accept": "application/json"
       },
       body: JSON.stringify({
-        status: status,
-      }),
+        status: status
+      })
     })
       .then((r) => r.json())
       .then(fetchOrders());
@@ -72,20 +72,14 @@ function OrderCard({ order, fetchOrders }) {
         onClick={handleView} >
           View order
         </Button>
-        <Button 
+        { deletable ? <Button 
         fontSize="1vh"
         marginTop="1vh"
         marginRight= "1rem"
         onClick={handleDelete} >
           Delete order
-        </Button>
-        {/* {movable ? <Button
-        fontSize="1vh"
-        marginRight= "1rem"
-        marginTop="1vh"
-        onClick={() => handleMove() }>
-          Move to next stage
-        </Button> : <></>} */}
+        </Button> : <></> }
+  
       </Flex>
     </Box>
   )

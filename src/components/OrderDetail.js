@@ -1,4 +1,4 @@
-import { Flex } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import React , { useEffect , useState } from "react";
 import { useParams } from "react-router-dom";
 
@@ -19,25 +19,25 @@ function OrderDetail() {
   } , [])
 
   return (
-    <>
-      <div>Id: {order.id}</div>
+    <Box marginLeft="2rem" marginTop="1rem" >
+      <div>ID: {order.id}</div>
       <div>Status: {order.status}</div>
-      <div>delivery: {order.delivery}</div>
+      <div>delivery: {order.delivery ? "Yes" : "No" }</div>
       <div>Created: {order.created_at}</div>
       <div>Updated: {order.updated_at}</div>
       <div>Total price: {order.total_price}</div>
 
-      <div>Customer id: {customer.id}</div>
+      <div>Customer ID: {customer.id}</div>
       <div>Customer name: {customer.name}</div>
       <div>Customer email: {customer.email_address}</div>
       <div>Customer phone: {customer.phone_number}</div>
 
-      <ol>What are in this order: {dishes.map( dish => {
+      <ul> <b>Order items:</b> {dishes.map( dish => {
         return <li key={dish.menu_item}>{dish.quantity} of {dish.menu_item}</li>
       })
-      }</ol>
+      }</ul>
 
-    </>
+    </Box>
   )
 }
 

@@ -60,6 +60,28 @@ function CreateOrder() {
   //click for CurrentOrderCard
   const onClickDelete = (item) => {
     setDishesToAdd(dishesToAdd => dishesToAdd.filter(dish => dish.id !== item.id))
+    const temp = {...qtys}
+    temp[item.id] = 0
+    setQtys(temp)
+    fetch(`http://localhost:9292/menu_items/${item.id}`)
+      .then(r => r.json())
+      .then(data => {
+        setMenuItems(menuItems.map( menuItem => {
+          if (item.id === menuItem.id) {
+            menuItem.inventory = data.inventory
+          }
+          return menuItem
+          })
+        )
+      })      
+  }
+
+  const calcTotal = () => {
+    let total = 0
+    for (let key in qtys) {
+      total += (menuItems[key-1].price * qtys[key])
+    }
+    return Math.round(100*total)/100
   }
 
   return(
@@ -68,7 +90,9 @@ function CreateOrder() {
       `"form form"
       "menu order"`}
       gridTemplateRows={"1fr 4fr"}
-      gridTemplateColumns={"1fr 1fr"}>
+      gridTemplateColumns={"1fr 1fr"}
+      marginLeft="2rem"
+      marginTop="1rem">
       
       <GridItem area={"form"}>
         <Heading>Customer Info</Heading>
@@ -76,12 +100,12 @@ function CreateOrder() {
       </GridItem>
       
       <GridItem area={"menu"}>
-        <Heading>Select Menu Items</Heading>
+        <Heading>Select Menu Items:</Heading>
         <OrderMenu clickHandler={onClickAdd} setMenuItems={setMenuItems} menuItems={menuItems}/>
       </GridItem>
       
       <GridItem area={"order"}>
-        <Heading>Current Order</Heading>
+        <Heading>Current Order: ${calcTotal()}</Heading>
         <CurrentOrder qtys={qtys} clickHandler={onClickDelete} dishesToAdd={dishesToAdd} setDishesToAdd={setDishesToAdd} />
       </GridItem>
  

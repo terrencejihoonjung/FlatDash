@@ -1,4 +1,4 @@
-import { Box, Flex } from "@chakra-ui/react";
+import { Box, Heading } from "@chakra-ui/react";
 import React , { useEffect , useState } from "react";
 import OrderCard from "./OrderCard"
 import DashboardColumn from "./DashboardColumn"
@@ -25,14 +25,14 @@ function CustomerDetail({ onDeleteOrder , onMoveOrder }) {
   }
 
   return (
-    <Box>
-      <h1>{customer.name}'s Profile</h1>
-      <ul>
+    <Box marginLeft="2rem">
+      <Heading fontSize="lg" >{customer.name}'s Profile</Heading>
+      <ul >
         <li>Id: {customer.id}</li>
         <li>Email: {customer["email_address"]}</li>
         <li>Phone number: {customer["phone_number"]}</li>
         <li>Favourite dish: {customer["favorite_dish"]}</li>
-        <li>Total spent: {customer["total_spent"]}</li>
+        <li>Total spent: {Math.round(100*customer["total_spent"])/100}</li>
       </ul>      
 
       <DashboardColumn
@@ -40,7 +40,7 @@ function CustomerDetail({ onDeleteOrder , onMoveOrder }) {
           orders={allOrderOfCustomer} 
           onDeleteOrder={onDeleteOrderInCustomerDetail}
           onMoveOrder={onMoveOrder}
-          movable={false} />
+          deletable={false} />
     </Box>
   )
 }
