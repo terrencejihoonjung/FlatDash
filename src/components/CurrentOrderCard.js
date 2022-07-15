@@ -1,4 +1,5 @@
-import { Box, Heading, Item, Text, GridItem } from "@chakra-ui/react"
+import { Box, Heading, Text } from "@chakra-ui/react"
+import { useState } from "react"
 
 function CurrentOrderCard({ item, clickHandler }) {
 
@@ -14,7 +15,7 @@ function CurrentOrderCard({ item, clickHandler }) {
         margin="0.5rem" 
         flex= "1 0 30%" >
         <Heading size="md">
-            {item.name}
+            {item.item_name}
         </Heading>
         <Heading size="md" >
             Quantity: 

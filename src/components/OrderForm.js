@@ -2,14 +2,13 @@ import { FormControl,
         FormLabel,
         Input,
         Button,
-        Flex,
         FormHelperText,
         FormErrorMessage,
         Checkbox,
         Box } from "@chakra-ui/react"
   import { useState } from "react"
 
-function OrderForm() {
+function OrderForm({ onSubmit }) {
     
   const initialForm= {
     name: "",
@@ -27,22 +26,8 @@ function OrderForm() {
   }
 
   const handleSubmit = e => {
-    e.preventDefault()
-
-    const customerObj = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json"},
-      body: JSON.stringify(
-        {name: form.name,
-        email: form.email,
-        phone: form.phone}
-        )
-    }
-    
-    /*fetch(http://localhost:9292/customers, customerPOSTObj)*/
-
+    e.preventDefault() 
+    onSubmit(form.name, form.email, form.phone, form.delivery)
     setForm(initialForm)
   }
 

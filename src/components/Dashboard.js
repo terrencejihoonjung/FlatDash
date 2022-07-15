@@ -3,8 +3,6 @@ import DashboardColumn from "./DashboardColumn"
 import { useState , useEffect } from "react"
 
 function Dashboard( { fetchOrders , orders } ) {
-  
-  // add click or drag to change order.status to next status
 
   useEffect(() => {
     fetchOrders()

@@ -1,4 +1,4 @@
-import { Box, Heading, Item, Text, GridItem } from "@chakra-ui/react"
+import { Box, Heading, Text } from "@chakra-ui/react"
 
 function MenuCard({ item, clickHandler }) {
 

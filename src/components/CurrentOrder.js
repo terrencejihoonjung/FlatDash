@@ -2,9 +2,9 @@ import { Box, Flex, FormControl, FormLabel } from "@chakra-ui/react"
 import { useState, useEffect } from "react"
 import CurrentOrderCard from "./CurrentOrderCard"
 
-function CurrentOrder({ clickHandler, currentOrders, setCurrentOrders }) {
+function CurrentOrder({ clickHandler, dishesToAdd }) {
 
-    const renderCurrentOrderCards = currentOrders.map(item => {
+    const renderCurrentOrderCards = dishesToAdd.map(item => {
         return <CurrentOrderCard key={item.id} item={item} clickHandler={clickHandler} />
     })
 

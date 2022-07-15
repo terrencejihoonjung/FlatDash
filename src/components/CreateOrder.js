@@ -6,16 +6,63 @@ import { useState } from "react"
 
 function CreateOrder() {
 
-const [currentOrders, setCurrentOrders] = useState([])
-const [menuItems, setMenuItems] = useState([])
+  const [dishesToAdd, setDishesToAdd] = useState([])
+  const [menuItems, setMenuItems] = useState([])
+  const [qtys, setQtys] = useState({})
+  // const qtys={}
 
-const onClickAdd = (addedOrder) => {
-  setCurrentOrders(currentOrders => [...currentOrders, addedOrder])
-}
+  //click for MenuCard
+  const onClickAdd = (addedItem) => {
+    console.log("clicked menu item!")
+    const id = addedItem.id
+    let temp = {...qtys}
 
-const onClickDelete = () => {
+    if (!dishesToAdd.includes(addedItem)) {
+      console.log("dishes:" + dishesToAdd)
+      setDishesToAdd(dishesToAdd => [...dishesToAdd, addedItem])
+      temp[id] = 1
+      console.log("tempd[id]: " + temp[id])
+      setQtys(temp)
+    }
 
-}
+    else {
+      console.log("tempd[id]: " + temp[id])
+      temp[id] += 1
+      setQtys(temp[id])
+      console.log("temp: " + temp)
+      console.log("tempd[id]: " + temp[id])
+    }
+  }
+
+  const onSubmit = (name, email, phone, delivery) => {
+    const customerObj = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"},
+      body: JSON.stringify(
+        {name: name,
+        email: email,
+        phone: phone,
+        delivery: delivery,
+        dishesToAdd: dishesToAdd,
+        quantity: qtys}
+        )
+    }
+    
+    fetch("http://localhost:9292/order", customerObj)
+    // .then(r => r.json())
+    // .then(data => console.log(data))
+
+    //reset dishesToAdd and quantities
+    setDishesToAdd([])
+    setQtys({})
+  }
+
+  //click for CurrentOrderCard
+  const onClickDelete = () => {
+
+  }
 
   return(
     <Grid
@@ -27,7 +74,7 @@ const onClickDelete = () => {
       
       <GridItem area={"form"}>
         <Heading>Customer Info</Heading>
-        <OrderForm />
+        <OrderForm onSubmit={onSubmit}/>
       </GridItem>
       
       <GridItem area={"menu"}>
@@ -37,7 +84,7 @@ const onClickDelete = () => {
       
       <GridItem area={"order"}>
         <Heading>Current Order</Heading>
-        <CurrentOrder clickHandler={onClickDelete} currentOrders={currentOrders} setCurrentOrders={setCurrentOrders} />
+        <CurrentOrder clickHandler={onClickDelete} dishesToAdd={dishesToAdd} setDishesToAdd={setDishesToAdd} />
       </GridItem>
  
     </Grid>
