@@ -1,5 +1,4 @@
-import { Box, Heading, Text } from "@chakra-ui/react"
-import { useState } from "react"
+import { Box, Heading } from "@chakra-ui/react"
 
 function CurrentOrderCard({ item, clickHandler , quantity }) {
 

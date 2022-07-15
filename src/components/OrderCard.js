@@ -1,7 +1,7 @@
 import { Box, Heading, Text, Button, Flex } from "@chakra-ui/react"
 import { useNavigate } from "react-router-dom";
 
-function OrderCard({ order, fetchOrders , deletable }) {
+function OrderCard({ order, fetchOrders, deletable }) {
 
   let navigate = useNavigate(); 
   function handleView(e) {

@@ -1,5 +1,5 @@
-import { Box, Flex, FormControl, FormLabel } from "@chakra-ui/react"
-import { useState, useEffect } from "react"
+import { Flex } from "@chakra-ui/react"
+import { useEffect } from "react"
 import MenuCard from "./MenuCard"
 
 function OrderMenu({ clickHandler, menuItems, setMenuItems }) {
