@@ -13,6 +13,9 @@ Restaurant order application that tracks order details and progress for each cus
 
 ![Home Page](https://github.com/terrencejihoonjung/flatdash_frontend/blob/main/public/demo/Home.png?raw=true)
 ![Order Detail](https://github.com/terrencejihoonjung/flatdash_frontend/blob/main/public/demo/Detail.png?raw=true)
+![Create Order](https://github.com/terrencejihoonjung/flatdash_frontend/blob/main/public/demo/Create.png?raw=true)
+![Customer Lookup](https://github.com/terrencejihoonjung/flatdash_frontend/blob/main/public/demo/Lookup.png?raw=true)
+![Customer Orders](https://github.com/terrencejihoonjung/flatdash_frontend/blob/main/public/demo/Customer.png?raw=true)
 
 ## Technologies
 
