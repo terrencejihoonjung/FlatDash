@@ -11,6 +11,8 @@ Restaurant order application that tracks order details and progress for each cus
 * Create a new order for a customer
 * Look up customers by their email address and obtain a list of all their existing food orders
 
+![Home Page](https://github.com/terrencejihoonjung/flatdash_frontend/blob/main/image.jpg?raw=true)
+
 ## Technologies
 
 Languages:
